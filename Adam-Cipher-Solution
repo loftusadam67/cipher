@@ -1,0 +1,16 @@
+import collections
+from collections import Counter
+from english_words import get_english_words_set
+biggest_set = list(get_english_words_set(['gcide', 'web2'], lower=True, alpha=True))
+cipher = open("Cipher text substituation.txt", "r")
+text = cipher.read()
+words = list(text.split(" "))
+possible_words = list()
+pos = 0
+for i in words:
+    while True:
+        if Counter(i) == Counter(biggest_set[pos]):
+            possible_words.append(biggest_set[pos])
+ 
+with open("possible words.txt") as f:
+    f.write(possible_words)
